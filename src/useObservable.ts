@@ -10,7 +10,7 @@ export interface Observable<T> {
 function useObservable<T>(observable$: Observable<T>): T | undefined;
 function useObservable<T>(observable$: Observable<T>, initialValue: T): T;
 function useObservable<T>(observable$: Observable<T>, initialValue?: T): T | undefined {
-  const [value, update] = useState<T | undefined>(initialValue);
+  const [value, update] = useState<T>(observable$.value);
 
   useIsomorphicLayoutEffect(() => {
     const s = observable$.subscribe(update);
